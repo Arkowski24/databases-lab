@@ -1,67 +1,65 @@
 package pl.edu.agh.hibernate.example;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import org.hibernate.cfg.Configuration;
+import pl.edu.agh.hibernate.example.controller.MakeOrderController;
 
-import java.util.Scanner;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import java.io.IOException;
 
-public class Main {
-    private static SessionFactory sessionFactory = null;
+public class Main extends Application {
+    private static EntityManagerFactory entityManagerFactory = null;
+    private Stage primaryStage;
 
     public static void main(String[] args) {
-        sessionFactory = getSessionFactory();
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.beginTransaction();
-
-        Product product = readProduct();
-        session.save(product);
-
-        tx.commit();
-        session.close();
-        sessionFactory.close();
+        launch(args);
     }
 
-    private static SessionFactory getSessionFactory() {
-        if (sessionFactory == null) {
+    private static EntityManagerFactory getEntityManagerFactory() {
+        if (entityManagerFactory == null) {
             Configuration configuration = new Configuration();
-            sessionFactory = configuration.configure().buildSessionFactory();
+            entityManagerFactory = configuration.configure().buildSessionFactory();
         }
-        return sessionFactory;
+        return entityManagerFactory;
     }
 
-    private static void saveSupplier(Session session) {
-        Supplier supplier = readSupplier();
-        session.save(supplier);
+    @Override
+    public void start(Stage primaryStage) {
+        this.primaryStage = primaryStage;
+        this.primaryStage.setTitle("MakeOrder App");
+
+        EntityManagerFactory emf = getEntityManagerFactory();
+        EntityManager em = emf.createEntityManager();
+        ShopDatabaseFiller.fillDatabase(em);
+        ShopService shopService = new ShopService(em);
+
+        initRootLayout(shopService);
     }
 
-    private static Product findProduct(Session session, String productName){
-        return session.find(Product.class, productName);
+    @Override
+    public void stop() {
+        entityManagerFactory.close();
     }
 
-    private static Product readProduct() {
-        Scanner inputScanner = new Scanner(System.in);
-        System.out.println("Product name:");
-        String prodName = inputScanner.nextLine();
+    private void initRootLayout(ShopService shopService) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("/MakeOrder.fxml"));
+            AnchorPane rootLayout = loader.load();
 
-        System.out.println("Units count:");
-        int unitsCount = inputScanner.nextInt();
+            MakeOrderController controller = loader.getController();
+            controller.setService(shopService);
 
-        return new Product(prodName, unitsCount, null);
-    }
-
-    private static Supplier readSupplier() {
-        Scanner inputScanner = new Scanner(System.in);
-        System.out.println("Company name:");
-        String companyName = inputScanner.nextLine();
-
-        System.out.println("Street name:");
-        String streetName = inputScanner.nextLine();
-
-        System.out.println("City name:");
-        String cityName = inputScanner.nextLine();
-
-        return new Supplier(companyName, streetName, cityName);
+            Scene scene = new Scene(rootLayout);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

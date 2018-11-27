@@ -6,43 +6,38 @@ import pl.edu.agh.hibernate.example.model.company.Supplier;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Products")
+@Access(AccessType.PROPERTY)
 public class Product {
-    private String id;
+    private int id;
     private StringProperty productName;
+    private Category category;
     private IntegerProperty unitsInStock;
     private DoubleProperty price;
-
-    @ManyToOne
-    @JoinColumn(name = "companyName")
     private Supplier suppliedBy;
-
-    @ManyToOne
-    @JoinColumn(name = "categoryID")
-    private Category category;
-
 
     public Product() {
     }
 
-    public Product(String productName, int unitsInStock, Supplier suppliedBy, Double price) {
+    public Product(String productName, Category category, int unitsInStock, Supplier suppliedBy, Double price) {
         this.productName = new SimpleStringProperty(productName);
+        this.category = category;
         this.unitsInStock = new SimpleIntegerProperty(unitsInStock);
         this.suppliedBy = suppliedBy;
         this.price = new SimpleDoubleProperty(price);
     }
 
     @Id
-    public String getId() {
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
 
-    @Basic
+    @Column(name = "name")
     public String getProductName() {
         return productName.getValue();
     }
@@ -51,12 +46,11 @@ public class Product {
         this.productName.set(productName);
     }
 
-    public StringProperty getProductNameProperty() {
+    public StringProperty productNameProperty() {
         return productName;
     }
 
 
-    @Basic
     public int getUnitsInStock() {
         return unitsInStock.getValue();
     }
@@ -65,10 +59,13 @@ public class Product {
         this.unitsInStock.setValue(unitsInStock);
     }
 
-    public IntegerProperty getUnitsInStockProperty() {
+    public IntegerProperty unitsInStockProperty() {
         return unitsInStock;
     }
 
+
+    @ManyToOne
+    @JoinColumn(name = "companyName")
     public Supplier getSuppliedBy() {
         return suppliedBy;
     }
@@ -78,6 +75,8 @@ public class Product {
     }
 
 
+    @ManyToOne
+    @JoinColumn(name = "categoryID")
     public Category getCategory() {
         return category;
     }
@@ -87,7 +86,6 @@ public class Product {
     }
 
 
-    @Basic
     public double getPrice() {
         return price.get();
     }
@@ -96,7 +94,7 @@ public class Product {
         this.price.set(price);
     }
 
-    public DoubleProperty getPriceProperty() {
+    public DoubleProperty priceProperty() {
         return price;
     }
 }

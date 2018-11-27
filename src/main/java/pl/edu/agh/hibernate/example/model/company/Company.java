@@ -7,10 +7,9 @@ import javax.persistence.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public class Company {
+@Access(AccessType.PROPERTY)
+public abstract class Company {
     private StringProperty companyName;
-
-    @Embedded
     private Address address;
 
     public Company() {
@@ -34,6 +33,8 @@ public class Company {
         return companyName;
     }
 
+
+    @Embedded
     public Address getAddress() {
         return address;
     }

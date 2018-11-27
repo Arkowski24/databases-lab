@@ -8,14 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Access(AccessType.PROPERTY)
 public class Category {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private int categoryID;
-
     private StringProperty name;
-
-    @OneToMany(mappedBy = "category")
     private List<Product> products;
 
     public Category() {
@@ -26,11 +22,17 @@ public class Category {
         this.products = new ArrayList<>();
     }
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public int getCategoryID() {
         return categoryID;
     }
 
-    @Basic
+    public void setCategoryID(int categoryID) {
+        this.categoryID = categoryID;
+    }
+
+
     public String getName() {
         return name.getValue();
     }
@@ -39,10 +41,12 @@ public class Category {
         this.name.setValue(name);
     }
 
-    public StringProperty getNameProperty() {
+    public StringProperty nameProperty() {
         return name;
     }
 
+
+    @OneToMany(mappedBy = "category")
     public List<Product> getProducts() {
         return products;
     }

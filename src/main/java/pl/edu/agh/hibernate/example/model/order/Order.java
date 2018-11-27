@@ -1,28 +1,22 @@
 package pl.edu.agh.hibernate.example.model.order;
 
-import org.apache.derby.client.am.DateTime;
 import pl.edu.agh.hibernate.example.model.company.Customer;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
+@Access(AccessType.PROPERTY)
 public class Order {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-
-    @ManyToOne
     private Customer customer;
-
-    @OneToMany
     private List<OrderItem> orderItems;
-
-    private DateTime orderDate;
-
-    @Enumerated(EnumType.STRING)
+    private LocalDateTime orderDate;
     private OrderStatus status;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public int getId() {
         return id;
     }
@@ -31,6 +25,8 @@ public class Order {
         this.id = id;
     }
 
+
+    @ManyToOne
     public Customer getCustomer() {
         return customer;
     }
@@ -39,6 +35,9 @@ public class Order {
         this.customer = customer;
     }
 
+
+    @OneToMany
+    @JoinTable
     public List<OrderItem> getOrderItems() {
         return orderItems;
     }
@@ -47,14 +46,17 @@ public class Order {
         this.orderItems = orderItems;
     }
 
-    public DateTime getOrderDate() {
+
+    public LocalDateTime getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(DateTime orderDate) {
+    public void setOrderDate(LocalDateTime orderDate) {
         this.orderDate = orderDate;
     }
 
+
+    @Enumerated(EnumType.STRING)
     public OrderStatus getStatus() {
         return status;
     }

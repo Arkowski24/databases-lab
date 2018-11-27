@@ -2,11 +2,14 @@ package pl.edu.agh.hibernate.example.model.company;
 
 import pl.edu.agh.hibernate.example.model.product.Product;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import java.util.List;
 
 @Entity
+@Access(AccessType.PROPERTY)
 public class Supplier extends Company {
     private List<Product> supplies;
     private String bankAccountNumber;
