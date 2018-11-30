@@ -3,7 +3,6 @@ package pl.edu.agh.hibernate.example.dao;
 import pl.edu.agh.hibernate.example.model.product.Product;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
@@ -15,17 +14,9 @@ public class ProductDAO {
     }
 
     public List<Product> getAllAvailableProducts() {
-        String queryString = "select p from Product p " +
-                             "where p.unitsInStock > 0";
+        String queryString = "select p from Product p where p.unitsInStock > 0";
         TypedQuery<Product> query = em.createQuery(queryString, Product.class);
 
         return query.getResultList();
-    }
-
-    public void saveProduct(Product product) {
-        EntityTransaction et = em.getTransaction();
-        et.begin();
-        em.persist(product);
-        et.commit();
     }
 }

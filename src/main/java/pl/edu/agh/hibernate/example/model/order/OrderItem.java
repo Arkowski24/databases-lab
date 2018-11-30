@@ -7,6 +7,7 @@ import pl.edu.agh.hibernate.example.model.product.Product;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "ORDERS_ITEMS")
 @Access(AccessType.PROPERTY)
 public class OrderItem {
     private int id;
@@ -16,8 +17,7 @@ public class OrderItem {
     public OrderItem() {
     }
 
-    public OrderItem(int id, Product product, int orderedUnits) {
-        this.id = id;
+    public OrderItem(Product product, int orderedUnits) {
         this.product = product;
         this.orderedUnits = new SimpleIntegerProperty(orderedUnits);
     }
@@ -34,7 +34,6 @@ public class OrderItem {
 
 
     @ManyToOne
-    @JoinColumn
     public Product getProduct() {
         return product;
     }
@@ -53,7 +52,13 @@ public class OrderItem {
         this.orderedUnits.set(orderedUnits);
     }
 
-    public IntegerProperty rderedUnitsProperty() {
+    public IntegerProperty orderedUnitsProperty() {
         return orderedUnits;
+    }
+
+
+    @Transient
+    public Double getSubTotal() {
+        return product.getPrice() * orderedUnits.getValue();
     }
 }

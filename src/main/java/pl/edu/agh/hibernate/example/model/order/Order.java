@@ -4,9 +4,11 @@ import pl.edu.agh.hibernate.example.model.company.Customer;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "ORDERS")
 @Access(AccessType.PROPERTY)
 public class Order {
     private int id;
@@ -14,6 +16,15 @@ public class Order {
     private List<OrderItem> orderItems;
     private LocalDateTime orderDate;
     private OrderStatus status;
+
+    public Order() {
+    }
+
+    public Order(Customer customer) {
+        this.customer = customer;
+        this.orderItems = new ArrayList<>();
+        this.status = OrderStatus.NEW;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -36,8 +47,8 @@ public class Order {
     }
 
 
-    @OneToMany
-    @JoinTable
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ORDER_ID")
     public List<OrderItem> getOrderItems() {
         return orderItems;
     }
@@ -47,6 +58,7 @@ public class Order {
     }
 
 
+    @Column(name = "ORDER_DATE")
     public LocalDateTime getOrderDate() {
         return orderDate;
     }

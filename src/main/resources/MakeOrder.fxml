@@ -3,9 +3,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<AnchorPane prefHeight="447.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.agh.hibernate.example.controller.MakeOrderController">
+<AnchorPane prefHeight="580.0" prefWidth="692.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.agh.hibernate.example.controller.MakeOrderController">
     <children>
-        <TableView fx:id="availableProductsTable" layoutX="26.0" layoutY="61.0" prefHeight="150.0" prefWidth="560.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="60.0">
+        <TableView fx:id="availableProductsTable" layoutX="26.0" layoutY="61.0" prefHeight="235.0" prefWidth="652.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="60.0">
             <columns>
                 <TableColumn fx:id="availableProductsNameColumn" editable="false" prefWidth="211.0" text="Product Name" />
                 <TableColumn fx:id="categoryNameColumn" editable="false" minWidth="3.0" prefWidth="70.0" text="Category" />
@@ -14,34 +14,34 @@
                 <TableColumn fx:id="priceColumn" editable="false" prefWidth="59.0" text="Price" />
             </columns>
         </TableView>
-        <ComboBox layoutX="309.0" layoutY="14.0" prefHeight="25.0" prefWidth="271.0" AnchorPane.rightAnchor="20.0" />
-        <TableView fx:id="orderedProductsTable" layoutX="20.0" layoutY="251.0" prefHeight="150.0" prefWidth="560.0" AnchorPane.bottomAnchor="46.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+        <ComboBox fx:id="customersComboBox" layoutX="309.0" layoutY="14.0" prefHeight="25.0" prefWidth="271.0" AnchorPane.rightAnchor="20.0" />
+        <TableView fx:id="cartProductsTable" layoutX="20.0" layoutY="251.0" prefHeight="188.0" prefWidth="652.0" AnchorPane.bottomAnchor="46.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
             <columns>
-                <TableColumn fx:id="orderedProductsNameColumn" editable="false" prefWidth="211.0" text="Product Name" />
-                <TableColumn fx:id="orderedUnitsInStockColumn" editable="false" prefWidth="132.0" text="Units In Stock" />
-                <TableColumn fx:id="orderedUnitsColumn" prefWidth="123.0" text="Ordered Units" />
-                <TableColumn fx:id="orderedSumColumn" editable="false" prefWidth="93.0" text="Sum" />
+                <TableColumn fx:id="cartProductsNameColumn" editable="false" prefWidth="211.0" text="Product Name" />
+                <TableColumn fx:id="cartUnitsInStockColumn" editable="false" prefWidth="132.0" text="Units In Stock" />
+                <TableColumn fx:id="cartUnitsColumn" editable="false" prefWidth="123.0" text="Ordered Units" />
+                <TableColumn fx:id="cartSumColumn" editable="false" prefWidth="93.0" text="Sum" />
             </columns>
         </TableView>
-        <Button layoutX="446.0" layoutY="218.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="59.0" text="Add" />
-        <Button layoutX="521.0" layoutY="218.0" mnemonicParsing="false" text="Remove" />
-        <Button layoutX="500.0" layoutY="409.0" mnemonicParsing="false" text="Make Order" />
-        <Label layoutX="264.0" layoutY="17.0" text="Client">
+        <Button fx:id="addItemButton" layoutX="537.0" layoutY="310.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="59.0" text="Add" />
+        <Button fx:id="removeItemButton" layoutX="613.0" layoutY="310.0" mnemonicParsing="false" text="Remove" />
+        <Button fx:id="makeOrderButton" layoutX="592.0" layoutY="541.0" mnemonicParsing="false" text="Make Order" />
+        <Label layoutX="354.0" layoutY="17.0" text="Client">
             <font>
                 <Font size="14.0" />
             </font>
         </Label>
-        <Label layoutX="21.0" layoutY="29.0" text="Available Items">
+        <Label layoutX="24.0" layoutY="29.0" text="Available Items">
             <font>
                 <Font size="14.0" />
             </font>
         </Label>
-        <Label layoutX="23.0" layoutY="221.0" text="Shopping Cart">
+        <Label layoutX="24.0" layoutY="313.0" text="Shopping Cart">
             <font>
                 <Font size="14.0" />
             </font>
         </Label>
-      <TextField editable="false" layoutX="60.0" layoutY="409.0" />
-      <Label layoutX="23.0" layoutY="413.0" text="Total" />
+      <TextField fx:id="totalTextField" editable="false" layoutX="68.0" layoutY="541.0" />
+      <Label layoutX="24.0" layoutY="545.0" text="Total" />
     </children>
 </AnchorPane>
