@@ -3,45 +3,79 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<AnchorPane prefHeight="580.0" prefWidth="692.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.agh.hibernate.example.controller.MakeOrderController">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity" prefHeight="620.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8"
+            fx:controller="pl.edu.agh.hibernate.example.controller.MakeOrderController">
     <children>
-        <TableView fx:id="availableProductsTable" layoutX="26.0" layoutY="61.0" prefHeight="235.0" prefWidth="652.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="60.0">
-            <columns>
-                <TableColumn fx:id="availableProductsNameColumn" editable="false" prefWidth="211.0" text="Product Name" />
-                <TableColumn fx:id="categoryNameColumn" editable="false" minWidth="3.0" prefWidth="70.0" text="Category" />
-                <TableColumn fx:id="supplierNameColumn" editable="false" prefWidth="126.0" text="Supplier" />
-                <TableColumn fx:id="unitsInStockColumn" editable="false" prefWidth="93.0" text="Units In Stock" />
-                <TableColumn fx:id="priceColumn" editable="false" prefWidth="59.0" text="Price" />
-            </columns>
-        </TableView>
-        <ComboBox fx:id="customersComboBox" layoutX="309.0" layoutY="14.0" prefHeight="25.0" prefWidth="271.0" AnchorPane.rightAnchor="20.0" />
-        <TableView fx:id="cartProductsTable" layoutX="20.0" layoutY="251.0" prefHeight="188.0" prefWidth="652.0" AnchorPane.bottomAnchor="46.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
-            <columns>
-                <TableColumn fx:id="cartProductsNameColumn" editable="false" prefWidth="211.0" text="Product Name" />
-                <TableColumn fx:id="cartUnitsInStockColumn" editable="false" prefWidth="132.0" text="Units In Stock" />
-                <TableColumn fx:id="cartUnitsColumn" editable="false" prefWidth="123.0" text="Ordered Units" />
-                <TableColumn fx:id="cartSumColumn" editable="false" prefWidth="93.0" text="Sum" />
-            </columns>
-        </TableView>
-        <Button fx:id="addItemButton" layoutX="537.0" layoutY="310.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="59.0" text="Add" />
-        <Button fx:id="removeItemButton" layoutX="613.0" layoutY="310.0" mnemonicParsing="false" text="Remove" />
-        <Button fx:id="makeOrderButton" layoutX="592.0" layoutY="541.0" mnemonicParsing="false" text="Make Order" />
-        <Label layoutX="354.0" layoutY="17.0" text="Client">
-            <font>
-                <Font size="14.0" />
-            </font>
-        </Label>
-        <Label layoutX="24.0" layoutY="29.0" text="Available Items">
-            <font>
-                <Font size="14.0" />
-            </font>
-        </Label>
-        <Label layoutX="24.0" layoutY="313.0" text="Shopping Cart">
-            <font>
-                <Font size="14.0" />
-            </font>
-        </Label>
-      <TextField fx:id="totalTextField" editable="false" layoutX="68.0" layoutY="541.0" />
-      <Label layoutX="24.0" layoutY="545.0" text="Total" />
+        <AnchorPane prefHeight="50.0" prefWidth="680.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                    AnchorPane.topAnchor="0.0">
+            <children>
+                <Label text="Available Items" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0">
+                    <font>
+                        <Font size="14.0"/>
+                    </font>
+                </Label>
+                <ComboBox fx:id="customersComboBox" layoutX="346.0" layoutY="13.0" prefHeight="25.0" prefWidth="271.0"
+                          AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0"/>
+                <Label layoutX="333.0" layoutY="19.0" text="Client" AnchorPane.rightAnchor="295.0"
+                       AnchorPane.topAnchor="12.0">
+                    <font>
+                        <Font size="14.0"/>
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+        <AnchorPane prefHeight="250.0" prefWidth="680.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                    AnchorPane.topAnchor="50.0">
+            <children>
+                <TableView fx:id="availableProductsTable" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0"
+                           AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                    <columns>
+                        <TableColumn fx:id="availableProductsNameColumn" editable="false" prefWidth="211.0"
+                                     text="Product Name"/>
+                        <TableColumn fx:id="categoryNameColumn" editable="false" minWidth="3.0" prefWidth="70.0"
+                                     text="Category"/>
+                        <TableColumn fx:id="supplierNameColumn" editable="false" prefWidth="126.0" text="Supplier"/>
+                        <TableColumn fx:id="unitsInStockColumn" editable="false" prefWidth="93.0"
+                                     text="Units In Stock"/>
+                        <TableColumn fx:id="priceColumn" editable="false" prefWidth="59.0" text="Price"/>
+                    </columns>
+                </TableView>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="5.0" layoutY="280.0" prefHeight="320.0" prefWidth="680.0" AnchorPane.bottomAnchor="0.0"
+                    AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="300.0">
+            <children>
+                <TableView fx:id="cartProductsTable" prefHeight="188.0" prefWidth="652.0" AnchorPane.bottomAnchor="40.0"
+                           AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="40.0">
+                    <columns>
+                        <TableColumn fx:id="cartProductsNameColumn" editable="false" prefWidth="211.0"
+                                     text="Product Name"/>
+                        <TableColumn fx:id="cartUnitsInStockColumn" editable="false" prefWidth="132.0"
+                                     text="Units In Stock"/>
+                        <TableColumn fx:id="cartUnitsColumn" prefWidth="123.0" text="Ordered Units"/>
+                        <TableColumn fx:id="cartSumColumn" editable="false" prefWidth="93.0" text="Sum"/>
+                    </columns>
+                </TableView>
+                <Button fx:id="makeOrderButton" layoutX="573.0" layoutY="279.0" mnemonicParsing="false"
+                        prefHeight="25.0" prefWidth="100.0" text="Make Order" AnchorPane.bottomAnchor="8.0"
+                        AnchorPane.rightAnchor="10.0"/>
+                <Label layoutX="14.0" layoutY="11.0" text="Shopping Cart" AnchorPane.leftAnchor="10.0"
+                       AnchorPane.topAnchor="10.0">
+                    <font>
+                        <Font size="14.0"/>
+                    </font>
+                </Label>
+                <Label layoutX="23.0" layoutY="288.0" text="Total" AnchorPane.bottomAnchor="12.0"
+                       AnchorPane.leftAnchor="10.0"/>
+                <TextField fx:id="totalTextField" editable="false" layoutX="106.0" layoutY="292.0"
+                           AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="50.0"/>
+                <Button fx:id="addItemButton" layoutX="528.0" layoutY="7.0" mnemonicParsing="false" prefHeight="25.0"
+                        prefWidth="60.0" text="Add" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="5.0"/>
+                <Button fx:id="removeItemButton" layoutX="585.0" layoutY="12.0" mnemonicParsing="false"
+                        prefHeight="25.0" prefWidth="60.0" text="Remove" AnchorPane.rightAnchor="10.0"
+                        AnchorPane.topAnchor="5.0"/>
+            </children>
+        </AnchorPane>
     </children>
 </AnchorPane>
