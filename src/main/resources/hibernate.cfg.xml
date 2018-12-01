@@ -10,11 +10,11 @@
         <property name="format_sql">true</property>
         <property name="use_sql_comments">true</property>
         <property name="hbm2ddl.auto">create</property>
-        <mapping class="pl.edu.agh.hibernate.example.model.product.Product"></mapping>
-        <mapping class="pl.edu.agh.hibernate.example.model.company.Supplier"></mapping>
-        <mapping class="pl.edu.agh.hibernate.example.model.product.Category"></mapping>
-        <mapping class="pl.edu.agh.hibernate.example.model.company.Customer"></mapping>
-        <mapping class="pl.edu.agh.hibernate.example.model.order.Order"></mapping>
-        <mapping class="pl.edu.agh.hibernate.example.model.order.OrderItem"></mapping>
+        <mapping class="pl.edu.agh.hibernate.example.shopapp.model.product.Product"></mapping>
+        <mapping class="pl.edu.agh.hibernate.example.shopapp.model.company.Supplier"></mapping>
+        <mapping class="pl.edu.agh.hibernate.example.shopapp.model.product.Category"></mapping>
+        <mapping class="pl.edu.agh.hibernate.example.shopapp.model.company.Customer"></mapping>
+        <mapping class="pl.edu.agh.hibernate.example.shopapp.model.order.Order"></mapping>
+        <mapping class="pl.edu.agh.hibernate.example.shopapp.model.order.OrderItem"></mapping>
     </session-factory>
 </hibernate-configuration>

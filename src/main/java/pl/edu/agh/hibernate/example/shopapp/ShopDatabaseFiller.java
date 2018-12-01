@@ -1,10 +1,10 @@
-package pl.edu.agh.hibernate.example;
+package pl.edu.agh.hibernate.example.shopapp;
 
-import pl.edu.agh.hibernate.example.model.company.Address;
-import pl.edu.agh.hibernate.example.model.company.Customer;
-import pl.edu.agh.hibernate.example.model.company.Supplier;
-import pl.edu.agh.hibernate.example.model.product.Category;
-import pl.edu.agh.hibernate.example.model.product.Product;
+import pl.edu.agh.hibernate.example.shopapp.model.company.Address;
+import pl.edu.agh.hibernate.example.shopapp.model.company.Customer;
+import pl.edu.agh.hibernate.example.shopapp.model.company.Supplier;
+import pl.edu.agh.hibernate.example.shopapp.model.product.Category;
+import pl.edu.agh.hibernate.example.shopapp.model.product.Product;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;

@@ -1,6 +1,6 @@
-package pl.edu.agh.hibernate.example.model.company;
+package pl.edu.agh.hibernate.example.shopapp.model.company;
 
-import pl.edu.agh.hibernate.example.model.product.Product;
+import pl.edu.agh.hibernate.example.shopapp.model.product.Product;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;

@@ -1,14 +1,14 @@
-package pl.edu.agh.hibernate.example.controller;
+package pl.edu.agh.hibernate.example.shopapp.controller;
 
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import pl.edu.agh.hibernate.example.ShopService;
-import pl.edu.agh.hibernate.example.model.company.Customer;
-import pl.edu.agh.hibernate.example.model.order.Order;
-import pl.edu.agh.hibernate.example.model.order.OrderItem;
-import pl.edu.agh.hibernate.example.model.order.OrderStatus;
-import pl.edu.agh.hibernate.example.model.product.Product;
+import pl.edu.agh.hibernate.example.shopapp.ShopService;
+import pl.edu.agh.hibernate.example.shopapp.model.company.Customer;
+import pl.edu.agh.hibernate.example.shopapp.model.order.Order;
+import pl.edu.agh.hibernate.example.shopapp.model.order.OrderItem;
+import pl.edu.agh.hibernate.example.shopapp.model.order.OrderStatus;
+import pl.edu.agh.hibernate.example.shopapp.model.product.Product;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

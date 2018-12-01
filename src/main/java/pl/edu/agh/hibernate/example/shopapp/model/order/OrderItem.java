@@ -1,8 +1,8 @@
-package pl.edu.agh.hibernate.example.model.order;
+package pl.edu.agh.hibernate.example.shopapp.model.order;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import pl.edu.agh.hibernate.example.model.product.Product;
+import pl.edu.agh.hibernate.example.shopapp.model.product.Product;
 
 import javax.persistence.*;
 import java.math.BigDecimal;

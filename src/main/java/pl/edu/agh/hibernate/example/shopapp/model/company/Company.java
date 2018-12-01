@@ -1,4 +1,4 @@
-package pl.edu.agh.hibernate.example.model.company;
+package pl.edu.agh.hibernate.example.shopapp.model.company;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;

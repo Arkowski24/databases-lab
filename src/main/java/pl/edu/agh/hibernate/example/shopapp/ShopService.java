@@ -1,11 +1,11 @@
-package pl.edu.agh.hibernate.example;
+package pl.edu.agh.hibernate.example.shopapp;
 
-import pl.edu.agh.hibernate.example.dao.CustomerDAO;
-import pl.edu.agh.hibernate.example.dao.OrderDAO;
-import pl.edu.agh.hibernate.example.dao.ProductDAO;
-import pl.edu.agh.hibernate.example.model.company.Customer;
-import pl.edu.agh.hibernate.example.model.order.Order;
-import pl.edu.agh.hibernate.example.model.product.Product;
+import pl.edu.agh.hibernate.example.shopapp.dao.CustomerDAO;
+import pl.edu.agh.hibernate.example.shopapp.dao.OrderDAO;
+import pl.edu.agh.hibernate.example.shopapp.dao.ProductDAO;
+import pl.edu.agh.hibernate.example.shopapp.model.company.Customer;
+import pl.edu.agh.hibernate.example.shopapp.model.order.Order;
+import pl.edu.agh.hibernate.example.shopapp.model.product.Product;
 
 import javax.persistence.EntityManager;
 import java.util.List;

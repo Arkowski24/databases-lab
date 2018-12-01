@@ -1,6 +1,6 @@
-package pl.edu.agh.hibernate.example.dao;
+package pl.edu.agh.hibernate.example.shopapp.dao;
 
-import pl.edu.agh.hibernate.example.model.order.Order;
+import pl.edu.agh.hibernate.example.shopapp.model.order.Order;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;

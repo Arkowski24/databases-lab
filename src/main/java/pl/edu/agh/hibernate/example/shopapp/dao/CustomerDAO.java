@@ -1,6 +1,6 @@
-package pl.edu.agh.hibernate.example.dao;
+package pl.edu.agh.hibernate.example.shopapp.dao;
 
-import pl.edu.agh.hibernate.example.model.company.Customer;
+import pl.edu.agh.hibernate.example.shopapp.model.company.Customer;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;

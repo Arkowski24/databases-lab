@@ -1,6 +1,6 @@
-package pl.edu.agh.hibernate.example.model.order;
+package pl.edu.agh.hibernate.example.shopapp.model.order;
 
-import pl.edu.agh.hibernate.example.model.company.Customer;
+import pl.edu.agh.hibernate.example.shopapp.model.company.Customer;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

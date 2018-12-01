@@ -1,4 +1,4 @@
-package pl.edu.agh.hibernate.example;
+package pl.edu.agh.hibernate.example.shopapp;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -6,7 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.hibernate.cfg.Configuration;
-import pl.edu.agh.hibernate.example.controller.MakeOrderController;
+import pl.edu.agh.hibernate.example.shopapp.controller.MakeOrderController;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
