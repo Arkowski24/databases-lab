@@ -1,4 +1,4 @@
-package pl.edu.agh.hibernate.example.shopapp.controller;
+package pl.edu.agh.hibernate.example.shopapp.presenter;
 
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import pl.edu.agh.hibernate.example.shopapp.ShopService;
+import pl.edu.agh.hibernate.example.shopapp.controller.ShopAppController;
 import pl.edu.agh.hibernate.example.shopapp.model.company.Customer;
 import pl.edu.agh.hibernate.example.shopapp.model.order.Order;
 import pl.edu.agh.hibernate.example.shopapp.model.order.OrderItem;
@@ -19,7 +20,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class MakeOrderController {
+public class MakeOrderPresenter {
     private ShopAppController shopAppController;
 
     private ShopService shopService;
@@ -63,7 +64,7 @@ public class MakeOrderController {
     @FXML
     private TextField discountTextField;
 
-    public MakeOrderController() {
+    public MakeOrderPresenter() {
         this.total = new SimpleObjectProperty<>(BigDecimal.ZERO);
         this.orderItems = FXCollections.observableArrayList();
         total.addListener((obj, oldVal, newVal) -> updateTotalField());

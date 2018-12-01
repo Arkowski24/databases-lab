@@ -9,6 +9,7 @@ import pl.edu.agh.hibernate.example.shopapp.Main;
 import pl.edu.agh.hibernate.example.shopapp.ShopService;
 import pl.edu.agh.hibernate.example.shopapp.model.order.OrderItem;
 import pl.edu.agh.hibernate.example.shopapp.presenter.EditItemPresenter;
+import pl.edu.agh.hibernate.example.shopapp.presenter.MakeOrderPresenter;
 
 import java.io.IOException;
 
@@ -25,7 +26,7 @@ public class ShopAppController {
             loader.setLocation(Main.class.getResource("/MakeOrder.fxml"));
             AnchorPane rootLayout = loader.load();
 
-            MakeOrderController controller = loader.getController();
+            MakeOrderPresenter controller = loader.getController();
             controller.setService(shopService);
             controller.setShopAppController(this);
 
