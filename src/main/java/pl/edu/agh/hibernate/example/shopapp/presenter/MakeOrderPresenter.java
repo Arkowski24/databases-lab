@@ -88,12 +88,12 @@ public class MakeOrderPresenter {
         }
     }
 
-    private Customer getSelectedCustomer() {
-        String customerName = customersComboBox.getSelectionModel().getSelectedItem();
-        if (customerName == null) {
-            return null;
-        }
-        return shopRepository.findCustomerByName(customerName);
+    private void reinitializeTables() {
+        availableProductsTable.getItems().clear();
+        availableProductsTable.getItems().setAll(shopRepository.getAvailableProducts());
+
+        orderItems.clear();
+        this.total.set(BigDecimal.ZERO);
     }
 
     @FXML
@@ -173,6 +173,14 @@ public class MakeOrderPresenter {
         reinitializeTables();
     }
 
+    private Customer getSelectedCustomer() {
+        String customerName = customersComboBox.getSelectionModel().getSelectedItem();
+        if (customerName == null) {
+            return null;
+        }
+        return shopRepository.findCustomerByName(customerName);
+    }
+
     private boolean isNotValidOrder() {
         Customer customer = getSelectedCustomer();
         return (customer == null || cartProductsTable.getItems().size() == 0);
@@ -188,14 +196,6 @@ public class MakeOrderPresenter {
                 .map(OrderItem::getProduct)
                 .collect(Collectors.toList());
         shopRepository.saveProducts(products);
-    }
-
-    private void reinitializeTables() {
-        availableProductsTable.getItems().clear();
-        availableProductsTable.getItems().setAll(shopRepository.getAvailableProducts());
-
-        orderItems.clear();
-        this.total.set(BigDecimal.ZERO);
     }
 
     private void updateMakeOrderButton() {
