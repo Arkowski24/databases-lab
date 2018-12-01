@@ -27,11 +27,15 @@ public class Main extends Application {
         return entityManagerFactory;
     }
 
-    private static ShopRepository startDatabaseRoutine() {
-        EntityManagerFactory emf = getEntityManagerFactory();
-        EntityManager em = emf.createEntityManager();
-        ShopDatabaseFiller.fillDatabase(em);
-        return new ShopRepository(em);
+    private ShopRepository startDatabaseRoutine() {
+        try {
+            EntityManagerFactory emf = getEntityManagerFactory();
+            EntityManager em = emf.createEntityManager();
+            ShopDatabaseFiller.fillDatabase(em);
+            return new ShopRepository(em);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     @Override
@@ -40,6 +44,10 @@ public class Main extends Application {
         this.primaryStage.setTitle("MakeOrder App");
 
         ShopRepository shopRepository = startDatabaseRoutine();
+        if (shopRepository == null) {
+            System.exit(-1);
+        }
+
         this.shopAppController = new ShopAppController(primaryStage);
         shopAppController.initRootLayout(shopRepository);
     }
