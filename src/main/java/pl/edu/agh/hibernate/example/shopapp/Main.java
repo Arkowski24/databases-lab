@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import org.hibernate.cfg.Configuration;
 import pl.edu.agh.hibernate.example.shopapp.controller.ShopAppController;
+import pl.edu.agh.hibernate.example.shopapp.repository.ShopRepository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -26,11 +27,11 @@ public class Main extends Application {
         return entityManagerFactory;
     }
 
-    private static ShopService startDatabaseRoutine() {
+    private static ShopRepository startDatabaseRoutine() {
         EntityManagerFactory emf = getEntityManagerFactory();
         EntityManager em = emf.createEntityManager();
         ShopDatabaseFiller.fillDatabase(em);
-        return new ShopService(em);
+        return new ShopRepository(em);
     }
 
     @Override
@@ -38,9 +39,9 @@ public class Main extends Application {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("MakeOrder App");
 
-        ShopService shopService = startDatabaseRoutine();
+        ShopRepository shopRepository = startDatabaseRoutine();
         this.shopAppController = new ShopAppController(primaryStage);
-        shopAppController.initRootLayout(shopService);
+        shopAppController.initRootLayout(shopRepository);
     }
 
     @Override

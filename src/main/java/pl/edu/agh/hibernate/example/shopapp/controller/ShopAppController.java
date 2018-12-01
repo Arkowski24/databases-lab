@@ -6,10 +6,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import pl.edu.agh.hibernate.example.shopapp.Main;
-import pl.edu.agh.hibernate.example.shopapp.ShopService;
 import pl.edu.agh.hibernate.example.shopapp.model.order.OrderItem;
 import pl.edu.agh.hibernate.example.shopapp.presenter.EditItemPresenter;
 import pl.edu.agh.hibernate.example.shopapp.presenter.MakeOrderPresenter;
+import pl.edu.agh.hibernate.example.shopapp.repository.ShopRepository;
 
 import java.io.IOException;
 
@@ -20,14 +20,14 @@ public class ShopAppController {
         this.primaryStage = primaryStage;
     }
 
-    public void initRootLayout(ShopService shopService) {
+    public void initRootLayout(ShopRepository shopRepository) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("/MakeOrder.fxml"));
             AnchorPane rootLayout = loader.load();
 
             MakeOrderPresenter controller = loader.getController();
-            controller.setService(shopService);
+            controller.setService(shopRepository);
             controller.setShopAppController(this);
 
             Scene scene = new Scene(rootLayout);

@@ -6,13 +6,13 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import pl.edu.agh.hibernate.example.shopapp.ShopService;
 import pl.edu.agh.hibernate.example.shopapp.controller.ShopAppController;
 import pl.edu.agh.hibernate.example.shopapp.model.company.Customer;
 import pl.edu.agh.hibernate.example.shopapp.model.order.Order;
 import pl.edu.agh.hibernate.example.shopapp.model.order.OrderItem;
 import pl.edu.agh.hibernate.example.shopapp.model.order.OrderStatus;
 import pl.edu.agh.hibernate.example.shopapp.model.product.Product;
+import pl.edu.agh.hibernate.example.shopapp.repository.ShopRepository;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 public class MakeOrderPresenter {
     private ShopAppController shopAppController;
 
-    private ShopService shopService;
+    private ShopRepository shopRepository;
     private SimpleObjectProperty<BigDecimal> total;
     private ObservableList<OrderItem> orderItems;
 
@@ -70,8 +70,8 @@ public class MakeOrderPresenter {
         total.addListener((obj, oldVal, newVal) -> updateTotalField());
     }
 
-    public void setService(ShopService shopService) {
-        this.shopService = shopService;
+    public void setService(ShopRepository shopRepository) {
+        this.shopRepository = shopRepository;
 
         fillCustomers();
         reinitializeTables();
@@ -82,7 +82,7 @@ public class MakeOrderPresenter {
     }
 
     private void fillCustomers() {
-        List<Customer> customers = shopService.getAllCustomers();
+        List<Customer> customers = shopRepository.getAllCustomers();
         for (Customer c : customers) {
             customersComboBox.getItems().add(c.getCompanyName());
         }
@@ -93,7 +93,7 @@ public class MakeOrderPresenter {
         if (customerName == null) {
             return null;
         }
-        return shopService.findCustomerByName(customerName);
+        return shopRepository.findCustomerByName(customerName);
     }
 
     @FXML
@@ -167,7 +167,7 @@ public class MakeOrderPresenter {
         order.setOrderDate(LocalDateTime.now());
         order.setStatus(OrderStatus.NEW);
 
-        shopService.saveOrder(order);
+        shopRepository.saveOrder(order);
         updateUnitsInStock(order);
 
         reinitializeTables();
@@ -187,12 +187,12 @@ public class MakeOrderPresenter {
         List<Product> products = order.getOrderItems().parallelStream()
                 .map(OrderItem::getProduct)
                 .collect(Collectors.toList());
-        shopService.saveProducts(products);
+        shopRepository.saveProducts(products);
     }
 
     private void reinitializeTables() {
         availableProductsTable.getItems().clear();
-        availableProductsTable.getItems().setAll(shopService.getAvailableProducts());
+        availableProductsTable.getItems().setAll(shopRepository.getAvailableProducts());
 
         orderItems.clear();
         this.total.set(BigDecimal.ZERO);

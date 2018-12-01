@@ -1,4 +1,4 @@
-package pl.edu.agh.hibernate.example.shopapp.dao;
+package pl.edu.agh.hibernate.example.shopapp.repository.dao;
 
 import pl.edu.agh.hibernate.example.shopapp.model.order.Order;
 
