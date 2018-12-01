@@ -1,24 +1,30 @@
 package pl.edu.agh.hibernate.example.shopapp.model.company;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Entity;
+import javax.persistence.Table;
+import java.math.BigDecimal;
 
 @Entity
+@Table(name = "CUSTOMERS")
+@Access(AccessType.PROPERTY)
 public class Customer extends Company {
-    private double discount;
+    private BigDecimal discount;
 
     public Customer() {
     }
 
-    public Customer(String companyName, Address address, double discount) {
+    public Customer(String companyName, Address address, BigDecimal discount) {
         super(companyName, address);
         this.discount = discount;
     }
 
-    public double getDiscount() {
+    public BigDecimal getDiscount() {
         return discount;
     }
 
-    public void setDiscount(double discount) {
+    public void setDiscount(BigDecimal discount) {
         this.discount = discount;
     }
 }

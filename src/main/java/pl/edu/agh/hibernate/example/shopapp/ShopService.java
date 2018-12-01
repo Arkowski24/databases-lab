@@ -13,12 +13,12 @@ import java.util.List;
 public class ShopService {
     private CustomerDAO customerDAO;
     private OrderDAO orderDAO;
-    private ProductDAO productDao;
+    private ProductDAO productDAO;
 
     public ShopService(EntityManager em) {
         this.customerDAO = new CustomerDAO(em);
         this.orderDAO = new OrderDAO(em);
-        this.productDao = new ProductDAO(em);
+        this.productDAO = new ProductDAO(em);
     }
 
     public List<Customer> getAllCustomers() {
@@ -34,6 +34,10 @@ public class ShopService {
     }
 
     public List<Product> getAvailableProducts() {
-        return productDao.getAllAvailableProducts();
+        return productDAO.getAllAvailableProducts();
+    }
+
+    public void saveProducts(List<Product> products) {
+        productDAO.saveProducts(products);
     }
 }

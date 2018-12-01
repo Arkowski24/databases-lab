@@ -8,9 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "CATEGORIES")
 @Access(AccessType.PROPERTY)
 public class Category {
-    private int categoryID;
+    private int Id;
     private StringProperty name;
     private List<Product> products;
 
@@ -24,12 +25,12 @@ public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public int getCategoryID() {
-        return categoryID;
+    public int getId() {
+        return Id;
     }
 
-    public void setCategoryID(int categoryID) {
-        this.categoryID = categoryID;
+    public void setId(int categoryID) {
+        this.Id = categoryID;
     }
 
 

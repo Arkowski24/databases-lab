@@ -7,6 +7,7 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
+@Table(name = "PRODUCTS")
 @Access(AccessType.PROPERTY)
 public class Product {
     private int id;
@@ -19,12 +20,12 @@ public class Product {
     public Product() {
     }
 
-    public Product(String productName, Category category, int unitsInStock, Supplier suppliedBy, Double price) {
+    public Product(String productName, Category category, int unitsInStock, Supplier suppliedBy, BigDecimal price) {
         this.productName = new SimpleStringProperty(productName);
         this.category = category;
         this.unitsInStock = new SimpleIntegerProperty(unitsInStock);
         this.suppliedBy = suppliedBy;
-        this.price = new SimpleObjectProperty<>(BigDecimal.valueOf(price));
+        this.price = new SimpleObjectProperty<>(price);
     }
 
     @Id
@@ -38,7 +39,7 @@ public class Product {
     }
 
 
-    @Column(name = "name")
+    @Column(name = "NAME")
     public String getProductName() {
         return productName.getValue();
     }
@@ -66,7 +67,7 @@ public class Product {
 
 
     @ManyToOne
-    @JoinColumn(name = "companyName")
+    @JoinColumn(name = "COMPANY_NAME")
     public Supplier getSuppliedBy() {
         return suppliedBy;
     }
@@ -77,7 +78,7 @@ public class Product {
 
 
     @ManyToOne
-    @JoinColumn(name = "categoryID")
+    @JoinColumn(name = "CATEGORY_ID")
     public Category getCategory() {
         return category;
     }
