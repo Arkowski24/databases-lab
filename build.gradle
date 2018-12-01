@@ -2,7 +2,7 @@ plugins {
     id 'java'
 }
 
-group 'pl.edu.agh.hibernate.example'
+group 'pl.edu.agh.hibernate.example.shopapp'
 version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
