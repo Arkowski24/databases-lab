@@ -5,6 +5,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import pl.edu.agh.hibernate.example.model.product.Product;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "ORDERS_ITEMS")
@@ -58,7 +59,7 @@ public class OrderItem {
 
 
     @Transient
-    public Double getSubTotal() {
-        return product.getPrice() * orderedUnits.getValue();
+    public BigDecimal getSubTotal() {
+        return product.getPrice().multiply(BigDecimal.valueOf(orderedUnits.getValue()));
     }
 }

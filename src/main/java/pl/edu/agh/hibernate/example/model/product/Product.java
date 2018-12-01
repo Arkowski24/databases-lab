@@ -4,6 +4,7 @@ import javafx.beans.property.*;
 import pl.edu.agh.hibernate.example.model.company.Supplier;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -12,7 +13,7 @@ public class Product {
     private StringProperty productName;
     private Category category;
     private IntegerProperty unitsInStock;
-    private DoubleProperty price;
+    private ObjectProperty<BigDecimal> price;
     private Supplier suppliedBy;
 
     public Product() {
@@ -23,7 +24,7 @@ public class Product {
         this.category = category;
         this.unitsInStock = new SimpleIntegerProperty(unitsInStock);
         this.suppliedBy = suppliedBy;
-        this.price = new SimpleDoubleProperty(price);
+        this.price = new SimpleObjectProperty<>(BigDecimal.valueOf(price));
     }
 
     @Id
@@ -86,15 +87,15 @@ public class Product {
     }
 
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price.get();
     }
 
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price.set(price);
     }
 
-    public DoubleProperty priceProperty() {
+    public ObjectProperty<BigDecimal> priceProperty() {
         return price;
     }
 }

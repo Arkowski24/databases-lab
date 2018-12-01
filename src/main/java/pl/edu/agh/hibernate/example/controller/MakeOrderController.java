@@ -10,12 +10,13 @@ import pl.edu.agh.hibernate.example.model.order.OrderItem;
 import pl.edu.agh.hibernate.example.model.order.OrderStatus;
 import pl.edu.agh.hibernate.example.model.product.Product;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
 public class MakeOrderController {
     private ShopService shopService;
-    private double total;
+    private BigDecimal total;
 
     @FXML
     private ComboBox<String> customersComboBox;
@@ -31,7 +32,7 @@ public class MakeOrderController {
     @FXML
     private TableColumn<Product, Integer> unitsInStockColumn;
     @FXML
-    private TableColumn<Product, Double> priceColumn;
+    private TableColumn<Product, BigDecimal> priceColumn;
 
     @FXML
     private TableView<OrderItem> cartProductsTable;
@@ -42,7 +43,7 @@ public class MakeOrderController {
     @FXML
     private TableColumn<OrderItem, Integer> cartUnitsColumn;
     @FXML
-    private TableColumn<OrderItem, Double> cartSumColumn;
+    private TableColumn<OrderItem, BigDecimal> cartSumColumn;
 
     @FXML
     private Button addItemButton;
@@ -78,7 +79,7 @@ public class MakeOrderController {
         categoryNameColumn.setCellValueFactory(product -> product.getValue().getCategory().nameProperty());
         supplierNameColumn.setCellValueFactory(product -> product.getValue().getSuppliedBy().companyNameProperty());
         unitsInStockColumn.setCellValueFactory(product -> product.getValue().unitsInStockProperty().asObject());
-        priceColumn.setCellValueFactory(product -> product.getValue().priceProperty().asObject());
+        priceColumn.setCellValueFactory(product -> product.getValue().priceProperty());
 
         cartProductsNameColumn.setCellValueFactory(item -> item.getValue().getProduct().productNameProperty());
         cartUnitsInStockColumn.setCellValueFactory(item -> item.getValue().getProduct().unitsInStockProperty().asObject());
@@ -98,7 +99,7 @@ public class MakeOrderController {
         OrderItem orderItem = new OrderItem(product, 1);
         cartProductsTable.getItems().add(orderItem);
 
-        total += orderItem.getSubTotal();
+        total = total.add(orderItem.getSubTotal());
         updateTotalField();
     }
 
@@ -110,7 +111,7 @@ public class MakeOrderController {
         Product product = orderItem.getProduct();
         availableProductsTable.getItems().add(product);
 
-        total -= orderItem.getSubTotal();
+        total = total.subtract(orderItem.getSubTotal());
         updateTotalField();
     }
 
@@ -145,12 +146,12 @@ public class MakeOrderController {
 
         cartProductsTable.getItems().clear();
 
-        this.total = 0;
+        this.total = BigDecimal.ZERO;
         updateTotalField();
     }
 
     private void updateTotalField() {
-        String totalText = Double.toString(this.total);
+        String totalText = total.toPlainString();
         totalTextField.setText(totalText);
     }
 }
